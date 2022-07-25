@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Core.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Util;
 
 namespace TestApp
 {
     public class SerializerTest
     {
-        private Serializer serializer = new Serializer();
+        private ISerializer lockQueueSerializer = new LockQueueSerializer();
 
         public void Start()
         {
@@ -38,7 +38,7 @@ namespace TestApp
                 return message;
             });
 
-            this.serializer.Enqueue(task);
+            this.lockQueueSerializer.Enqueue(task);
 
             string response = await task;
 
